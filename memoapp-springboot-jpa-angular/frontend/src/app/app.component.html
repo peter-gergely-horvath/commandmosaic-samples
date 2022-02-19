@@ -1,0 +1,40 @@
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link"
+           routerLink="/memos"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">
+            Memos
+        </a>
+        <a class="nav-item nav-link"
+           routerLink="/users"
+           routerLinkActive="active"
+            *ngIf="userIsAdmin"
+           [routerLinkActiveOptions]="{exact: true}">
+            Users
+        </a>
+        <a class="nav-item nav-link"
+           (click)="logout()">
+            Logout
+        </a>
+    </div>
+</nav>
+
+<!-- main app container -->
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+    <alert></alert>
+    <router-outlet></router-outlet>
+</div>
+
+<!-- credits -->
+<div class="text-center mt-4">
+    <p>
+        <a href="https://github.com/peter-gergely-horvath/commandmosaic/tree/master/sample-apps/commandmosaic-angular-springboot2-sample-app" target="_top">
+            MemoApp: CommandMosaic Sample Angular Application
+        </a>
+    </p>
+    <p>
+        <a href="https://commandmosaic.org" target="_top">CommandMosaic.org</a>
+    </p>
+</div>

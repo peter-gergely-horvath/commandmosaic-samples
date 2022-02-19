@@ -1,0 +1,20 @@
+<h1>{{ isAddMode ? 'Add' : 'Edit'}} Memo</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="memoText">Enter memo text</label>
+            <input type="text" id="memoText" formControlName="memoText" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.memoText.errors }" />
+            <div *ngIf="submitted && f.memoText.errors" class="invalid-feedback">
+                <div *ngIf="f.memoText.errors.required">Memo Text is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/memos" class="btn btn-link">Cancel</a>
+    </div>
+</form>

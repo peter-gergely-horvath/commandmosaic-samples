@@ -1,0 +1,51 @@
+<div class="alert alert-info" role="alert">
+    <div>
+    <strong>CommandMosaic Sample Application</strong>
+    This application demonstrates the usage of CommandMosaic and its concepts:
+    client code using the Command Dispatcher HTTP API and Java backend implemented as commands.
+    </div>
+
+    <div>
+        <strong>To Log in</strong>, use of the below credentials or register a new user.
+        <ul>
+            <li>Username: 'john', password: 'john1234': standard user</li>
+            <li>Username: 'fred', password: 'fred1234': standard user</li>
+            <li>Username: 'admin', password: 'admin1234': administrator user (permission to user management) </li>
+        </ul>
+    </div>
+
+    <div>
+        NOTE: The backend uses an in-memory database: all changes are reset and all memos stored are removed
+        when the backend server is restarted. This behaviour is intentional for this sample application.
+    </div>
+
+</div>
+
+<div class="card">
+    <h4 class="card-header">Login</h4>
+    <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                <a routerLink="../register" class="btn btn-link">Register</a>
+            </div>
+        </form>
+    </div>
+</div>
